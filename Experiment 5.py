@@ -1,15 +1,27 @@
-def fibonacci(n, memo=None):
-    if memo is None:
-        memo = {}
-        
-    if n <= 1:
-        return n
-    if n in memo:
-        return memo[n]
-        
-    memo[n] = fibonacci(n-1, memo) + fibonacci(n-2, memo)
-    return memo[n]
+s1 = "ABC"
 
-n = 10
-for i in range(n):
-    print(fibonacci(i), end=" ")
+s2 = "AC"
+
+m = len(s1)
+
+n = len(s2)
+
+dp = [[0] * (n + 1) for i in range(m + 1)]
+
+maximum = 0
+
+for i in range(1, m + 1):
+
+    for j in range(1, n + 1):
+
+        if s1[i - 1] == s2[j - 1]:
+
+            dp[i][j] = 1 + dp[i - 1][j - 1]
+
+            maximum = max(maximum, dp[i][j])
+
+        else:
+
+            dp[i][j] = 0
+
+print("Length of longest common substring:", maximum)
